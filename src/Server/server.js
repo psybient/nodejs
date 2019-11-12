@@ -1,12 +1,14 @@
 const cluster = require('cluster');
 const http = require('http');
-const os = require('os').hostname();
+const hostname = require('os').hostname();
+const os = require('os');
 const numCPUs = require('os').cpus().length;
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
+  console.log(`HOST_NAME: ${hostname} `);
   console.log(`CPU count: ${numCPUs} `);
-  console.log(`HOST_NAME: ${os} `);
+  console.log(`Hos free memory: ${os.freemem()} ` )
   // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
