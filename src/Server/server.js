@@ -9,6 +9,8 @@ if (cluster.isMaster) {
   console.log(`HOST_NAME: ${hostname} `);
   console.log(`CPU count: ${numCPUs} `);
   console.log(`Hos free memory: ${os.freemem()} ` )
+  console.log(`HOME_DIR : ${os.homedir()}`);
+  console.log(os.networkInterfaces())
   // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
